@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>闊宠棰戠郴缁熸嫇鎵戝浘 - 浜や簰鍙鍖?/title>
+<title>音视频系统拓扑图 - 浜や簰鍙鍖?/title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -36,39 +36,39 @@ body{font-family:"Microsoft YaHei",sans-serif;background:#1a1a2e;color:#eee;over
 
 <div id="header">
 <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-<h1>闊宠棰戠郴缁熸嫇鎵戝浘</h1>
-<span style="font-size:11px;color:#888">ATEM Constellation 8K - 瀹屾暣绯荤粺</span>
+<h1>音视频系统拓扑图</h1>
+<span style="font-size:11px;color:#888">ATEM Constellation 8K - 完整系统</span>
 </div>
 <div id="tabs">
-<button class="tab active" data-view="video">瑙嗛绯荤粺</button>
-<button class="tab" data-view="ob">OB绯荤粺</button>
-<button class="tab" data-view="audio">闊抽绯荤粺</button>
-<button class="tab" data-view="fiber">鍏変紶绯荤粺</button>
+<button class="tab active" data-view="video">视频系统</button>
+<button class="tab" data-view="ob">OB系统</button>
+<button class="tab" data-view="audio">音频系统</button>
+<button class="tab" data-view="fiber">光纤系统</button>
 </div>
 <div id="toolbar">
-<button id="btn-start">1.閫夎捣鐐?/button>
-<button id="btn-end">2.閫夌粓鐐?/button>
-<button id="btn-clear">娓呴櫎</button>
-<span class="status" id="status">鐐瑰嚮閫夎捣鐐?- 鐐硅澶?/span>
+<button id="btn-start">1.选起点/button>
+<button id="btn-end">2.选终点/button>
+<button id="btn-clear">清除</button>
+<span class="status" id="status">点击选起点 -> 点设备/span>
 </div>
 </div>
 <div id="main"><div id="cy"></div>
 <div id="info-panel">
-<h3>璁惧淇℃伅</h3>
-<div id="device-info"><p style="color:#888;padding:6px;font-size:12px">鐐瑰嚮璁惧鏌ョ湅璇︽儏</p></div>
+<h3>设备信息</h3>
+<div id="device-info"><p style="color:#888;padding:6px;font-size:12px">点击设备查看详情</p></div>
 <div id="path-display"></div>
 <div class="legend">
-<div style="font-weight:bold;margin-bottom:5px;color:#e94560;font-size:13px">鍥句緥</div>
-<div class="legend-item"><span class="line" style="background:#2ecc71"></span> 杈撳叆淇″彿(SDI)</div>
-<div class="legend-item"><span class="line" style="background:#e74c3c"></span> 杈撳嚭淇″彿(SDI)</div>
-<div class="legend-item"><span class="line" style="background:#f39c12"></span> HDMI淇″彿</div>
-<div class="legend-item"><span class="line" style="background:#3498db"></span> 鍏夌氦/缃戠粶</div>
-<div class="legend-item"><span class="line" style="background:#9b59b6"></span> Dante闊抽</div>
-<div class="legend-item"><span class="dot" style="background:#e94560"></span> 涓績鐭╅樀</div>
-<div class="legend-item"><span class="dot" style="background:#27ae60"></span> 鎽勫儚鏈?/div>
-<div class="legend-item"><span class="dot" style="background:#e67e22"></span> 杈撳嚭璁惧</div>
-<div class="legend-item"><span class="dot" style="background:#8e44ad"></span> 闊抽璁惧</div>
-<div class="legend-item"><span class="dot" style="background:#2c3e50"></span> 杞崲澶勭悊</div>
+<div style="font-weight:bold;margin-bottom:5px;color:#e94560;font-size:13px">图例</div>
+<div class="legend-item"><span class="line" style="background:#2ecc71"></span> 输入信号(SDI)</div>
+<div class="legend-item"><span class="line" style="background:#e74c3c"></span> 输出信号(SDI)</div>
+<div class="legend-item"><span class="line" style="background:#f39c12"></span> HDMI信号</div>
+<div class="legend-item"><span class="line" style="background:#3498db"></span> 光纤/网络</div>
+<div class="legend-item"><span class="line" style="background:#9b59b6"></span> Dante音频</div>
+<div class="legend-item"><span class="dot" style="background:#e94560"></span> 中心矩阵</div>
+<div class="legend-item"><span class="dot" style="background:#27ae60"></span> 摄像机/div>
+<div class="legend-item"><span class="dot" style="background:#e67e22"></span> 输出设备</div>
+<div class="legend-item"><span class="dot" style="background:#8e44ad">音频设备</span> 音频设备</div>
+<div class="legend-item"><span class="dot" style="background:#2c3e50"></span> 转换处理</div>
 </div></div></div>
 
 <script>
@@ -78,15 +78,15 @@ var NC={cen:"#e94560",cam:"#27ae60",inp:"#2ecc71",out:"#e67e22",con:"#2c3e50",au
 function aN(i,l,d,g){NODES.push({i:i,l:l,d:d,g:g});}
 function aE(i,s,t,tp,lb,de){EDGES.push({i:i,s:s,t:t,tp:tp,lb:lb,de:de});}
 function aP(i,x,y){POS[i]={x:x,y:y};}
-aN("MS","ATEM Constellation 8K","涓績鐭╅樀 INPUT:40 OUTPUT:24 M/E:4","cen");
+aN("MS","ATEM Constellation 8K","中心矩阵 INPUT:40 OUTPUT:24 M/E:4","cen");
 aN("OB","ATEM TV Studio Pro 4K","OB鐜板満鍒囨崲鍙?8璺疭DI","cen");
-for(var i=1;i<=6;i++){aN("C"+i,"CAM-"+i+"\nSONY 4300","鎽勫儚鏈?+i,"cam");aN("U"+i,"HDCU4300","CCU"+i,"cam");}
+for(var i=1;i<=6;i++){aN("C"+i,"CAM-"+i+"\nSONY 4300","摄像机+i,"cam");aN("U"+i,"HDCU4300","CCU"+i,"cam");}
 aN("VR","VCR","褰曞儚鏈?,"inp");aN("CG","CG","瀛楀箷鏈?,"inp");aN("RP","REPLAY","鍥炴斁绯荤粺","inp");
 aN("O1","OBS PC #1","鐩存挱鐢佃剳1","inp");aN("O2","OBS PC #2","鐩存挱鐢佃剳2","inp");aN("O3","OBS PC #3","鐩存挱鐢佃剳3","inp");
 aN("PH","鎵嬫満-OB-1","鎵嬫満淇″彿","inp");aN("L1","LIVE PC #1","鐩存挱1 寤惰繜","inp");aN("L2","LIVE PC #2","鐩存挱2 寤惰繜","inp");
 aN("DV","DeckLink 8K VCR","VCR閲囬泦鍗?,"con");aN("DC","DeckLink 8K CG","CG閲囬泦鍗?,"con");aN("DR","DeckLink 8K RP","鍥炴斁閲囬泦鍗?,"con");
 aN("DO1","DeckLink 8K O1","OBS1閲囬泦鍗?,"con");aN("DO2","DeckLink 8K O2","OBS2閲囬泦鍗?,"con");aN("DO3","DeckLink 8K O3","OBS3閲囬泦鍗?,"con");
-aN("P1","POV-#1","POV鎽勫儚鏈?","cam");aN("P2","POV-#2","POV鎽勫儚鏈?","cam");aN("P3","POV-#3","POV鎽勫儚鏈?","cam");aN("P4","POV-#4","POV鎽勫儚鏈?","cam");
+aN("P1","POV-#1","POV摄像机","cam");aN("P2","POV-#2","POV摄像机","cam");aN("P3","POV-#3","POV摄像机","cam");aN("P4","POV-#4","POV摄像机","cam");
 aN("CP","Converter #1","鎵嬫満 HDMI to SDI","con");
 aN("D1","BMD 瑙嗗垎 #1","SDI鍒嗛厤1","out");aN("D2","BMD 瑙嗗垎 #2","SDI鍒嗛厤2","out");aN("D3","BMD 瑙嗗垎 #3","SDI鍒嗛厤3","out");
 aN("DL","寤惰繜鍣?,"瑙嗛寤惰繜鍣?,"out");aN("R1","褰曟満 #1","鑺傜洰褰曞埗1","out");aN("R2","褰曟満 #2","鑺傜洰褰曞埗2","out");
@@ -170,7 +170,7 @@ var VIEWS={vid:["MS","C1","U1","C2","U2","C3","U3","C4","U4","C5","U5","C6","U6"
 ob:["OB","PH","CP","P1","P2","P3","P4","OG1","OG2","OG3","RP","MS","MV3"],
 aud:["YC","TI","IC","SL","SR","PL","PR","ER","M1","M2","CM","BG","PA","RE1","RE2","UR","O3"],
 fib:["FT","FR","FI","P1","P2","P3","P4"]};
-var TN={cen:"涓績鐭╅樀",cam:"鎽勫儚鏈?,inp:"杈撳叆璁惧",out:"杈撳嚭璁惧",con:"杞崲/澶勭悊",aud:"闊抽璁惧"};
+var TN={cen:"中心矩阵",cam:"摄像机,inp:"杈撳叆璁惧",out:"输出设备",con:"杞崲/澶勭悊",aud:"音频设备"};
 
 var cy,st=null,en=null,mode="n";
 
@@ -261,7 +261,7 @@ function setup(){
  document.getElementById("btn-clear").addEventListener("click",function(){clr();if(cy)cy.fit();});
 }
 function clr(){st=null;en=null;mode="n";if(cy)cy.elements().removeClass("ph pn");stat("鐐瑰嚮[閫夎捣鐐筣->鐐硅澶?);document.getElementById("btn-start").classList.remove("active");document.getElementById("btn-end").classList.remove("active");document.getElementById("path-display").innerHTML="";
- var nf=document.getElementById("device-info");nf.innerHTML='<p style="color:#888;padding:6px;font-size:12px">鐐瑰嚮璁惧鏌ョ湅璇︽儏</p>';}
+ var nf=document.getElementById("device-info");nf.innerHTML='<p style="color:#888;padding:6px;font-size:12px">点击设备查看详情</p>';}
 function stat(s){document.getElementById("status").textContent=s;}
 document.addEventListener("DOMContentLoaded",function(){init("vid");setup();});
 </script>
