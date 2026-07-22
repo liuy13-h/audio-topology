@@ -1,0 +1,4 @@
+﻿node_modules/
+.pnpm-store/
+dist/
+.vercel
